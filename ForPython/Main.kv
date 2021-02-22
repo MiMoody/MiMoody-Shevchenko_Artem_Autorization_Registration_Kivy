@@ -1,0 +1,159 @@
+<MyInput@TextInput>:
+    background_color:[1,1,1,1]
+    multiline: False
+    font_size:'20sp'
+	font_name:'19140.ttf'
+    padding: [5, (self.height-self.line_height)/2]
+	on_focus:
+		if self.focus: self.text = ""
+
+WindowManager:
+	Autorization:
+	Registration:
+
+<Autorization>:
+	name:"Auto"
+	enteredLogin:LoginUser
+	enteredPassword:PasswordUser
+	GridLayout:
+		rows:3
+		padding:50
+		
+
+		AnchorLayout:
+			
+			Image:
+				source:'kit.png'
+				size_hint: 1,1
+
+		BoxLayout:
+			padding:30,20,30,20
+			spacing:20
+			orientation: 'vertical'
+			MyInput:
+				id:LoginUser
+				text:' Логин'
+
+			MyInput:
+				id:PasswordUser
+				password: True
+				text:' Пароль'
+		BoxLayout:
+			padding: 30,0,30,30
+			spacing:20
+			orientation: 'vertical'
+			Button:
+				text:'Войти'
+				background_color: [.60,.38,.39,1]
+				background_normal:''
+				font_name:'19140.ttf'
+				size_hint: 1,0.1
+				font_size:'21sp'
+				on_release:
+					root.UserInput()
+				
+				
+				
+			Button:
+				size_hint: 1,0.1
+				text:'Зарегистрироваться?'
+				font_name:'19140.ttf'
+				color: [1,1,1,1]
+				background_color: [.21,.0,.11, 1]
+				background_normal:''
+				font_size:'18sp'
+				on_release: 
+					app.root.current = "Reg"
+					root.manager.transition.direction = "left"
+				on_press: 
+					self.background_down = ''
+<Registration>:
+	userSurname:surname
+	userName:name
+	userLogin:login
+	userPassword:password
+	userMiddleName:middleName
+	name:"Reg"
+    Button:
+        text:'Отмена'
+		font_name:'19140.ttf'
+        size_hint:0.25,0.06
+        pos_hint: {'x':0.05,'top':0.97 }
+		font_size:'19sp'
+		background_color: [.60,.38,.39,1]
+		background_normal:''
+        on_release: 
+            app.root.current = "Auto"
+            root.manager.transition.direction = "right"
+    AnchorLayout:
+        padding:50,70,50,50
+       
+        BoxLayout:
+            spacing:10
+            orientation: 'vertical'
+			
+            Label:
+                text:'Регистрация'
+                font_size:'26sp'
+				font_name:'19140.ttf'
+            MyInput:
+				id:surname
+                text:'Фамилия'
+            MyInput:
+				text:'Имя'
+				id:name
+            MyInput:
+				id:middleName
+				text:'Отчество'
+            MyInput:
+				text:'Логин'
+				id:login
+            MyInput:
+				text:'Пароль'
+				id:password
+			Button:
+				text:'Зарегистрироваться'
+				background_color: [.60,.38,.39,1]
+				background_normal:''
+				font_size:'21sp'
+				font_name:'19140.ttf'
+				on_release:
+					root.InsertUser()
+
+<MessageBox>
+	messageForText:InputForText
+	id:messageBox
+	size_hint:.7,.4
+	auto_dismiss: False
+	title:'Уведомление'
+	background_color: [.60,.38,.39,1]
+	background_normal:''
+	
+	BoxLayout:
+		orientation: 'vertical'
+		TextInput:
+			id:InputForText
+			multiline: True
+			font_name:'19140.ttf'
+			
+		Button:
+			text:'Закрыть'
+			size_hint:1,0.5
+			font_size:'19sp'
+			font_name:'19140.ttf'
+
+			on_release:
+				messageBox.dismiss()
+	
+
+       
+			
+			
+
+			
+		
+			
+
+	
+		
+
